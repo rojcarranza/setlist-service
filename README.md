@@ -19,3 +19,10 @@ go run ./cmd/setlist                       # :8080, SETLIST_ADDR to change
 ```
 
 Packages: `song`, `setlist`, `transpose`, `share`, `store` (in memory), `api`.
+
+## Pipeline
+
+`ci/setlist_step.py` is the one script Bamboo runs (`unit`, `integration`,
+`package`, `deploy`, `smoke`, `load`). `make test` runs the Go tests and the
+script's own tests. The branch `feat/capo-transpose` carries a deliberate
+transpose bug (G up 5 gives B, not C) so a red build exists to investigate.

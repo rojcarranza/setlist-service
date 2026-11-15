@@ -1,2 +1,7 @@
 bin/
+dist/
+test-results/
+setlist-load
 *.test
+__pycache__/
+.pytest_cache/

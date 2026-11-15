@@ -1,0 +1,6 @@
+.PHONY: test
+test: ## Go unit tests, vet, and the pipeline script's tests
+	gofmt -l . | (! grep .)
+	go vet ./... && go vet -tags integration ./...
+	go test ./...
+	cd ci && pytest -q -p no:cacheprovider .
