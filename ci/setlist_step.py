@@ -279,7 +279,7 @@ def cmd_deploy(args):
     load_image(image)
     ns = f"setlist-{env_name}"
     print(f"setlist: rolling out {image} to {ns} (region {args.region}, {args.replicas} replicas)")
-    run_ok(["kubectl", "apply", "-f", "-"], stdin=manifest(env_name, version, args.region, args.replicas, args.db_password),
+    run_ok(["kubectl", "apply", "-f", "-"], stdin=manifest(env_name, version, args.region, int(args.replicas), args.db_password),
            capture=False)
     run_ok(["kubectl", "-n", ns, "rollout", "status", "deployment/setlist", "--timeout=120s"])
     print(f"setlist: {version} is live in {ns}")
