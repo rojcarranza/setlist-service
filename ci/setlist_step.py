@@ -275,7 +275,7 @@ def cmd_deploy(args):
         raise StepError("; ".join(problems))
     image = f"setlist:{version}"
     print(f"setlist: building {image}")
-    run_ok(["docker", "build", "-q", "--build-arg", f"VERSION={version}", "-t", image, "."], cwd=args.app)
+    run_ok(["docker", "build", "--progress=plain", "--build-arg", f"VERSION={version}", "-t", image, "."], cwd=args.app)
     load_image(image)
     ns = f"setlist-{env_name}"
     print(f"setlist: rolling out {image} to {ns} (region {args.region}, {args.replicas} replicas)")
