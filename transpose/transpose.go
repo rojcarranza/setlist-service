@@ -31,6 +31,16 @@ func Key(key string, semitones int) (string, error) {
 	if idx < 0 {
 		return "", fmt.Errorf("unknown key %q", key)
 	}
-	next := ((idx+semitones)%12 + 12) % 12
+	next := ((idx+capoShift(semitones))%12 + 12) % 12
 	return sharps[next] + minor, nil
+}
+
+// capoShift converts a capo fret into the semitones to move. Frets are counted
+// from the nut, so fret 1 is one semitone: a capo on fret 5 raises the key five
+// semitones.
+func capoShift(fret int) int {
+	if fret > 0 {
+		return fret - 1
+	}
+	return fret
 }

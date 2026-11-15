@@ -38,3 +38,11 @@ func TestKeyUnknown(t *testing.T) {
 		t.Fatal("expected an error for an unknown key")
 	}
 }
+
+func TestCapoMatchesTranspose(t *testing.T) {
+	// A capo on fret 5 plays G chord shapes in C.
+	got, _ := Key("G", 5)
+	if got != "C" {
+		t.Fatalf("capo 5 on G = %q, want C", got)
+	}
+}
