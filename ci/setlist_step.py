@@ -365,6 +365,7 @@ def p95(samples):
 
 
 def cmd_load(args):
+    args.app = str(Path(args.app).resolve())
     run_ok(["go", "build", "-o", "setlist-load", "./cmd/setlist"], cwd=args.app)
     port = free_port()
     server = subprocess.Popen([str(Path(args.app) / "setlist-load")],
